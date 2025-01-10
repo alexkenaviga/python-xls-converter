@@ -1,4 +1,4 @@
-asyncio
-openpyxl
+#asyncio
+#openpyxl
 pandas
-openpyxl 
+xlrd

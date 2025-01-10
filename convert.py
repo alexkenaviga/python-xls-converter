@@ -13,11 +13,11 @@ class Converter:
 
 			# Create output dir
 			if out_dir is None:
-				out_dir = os.path.splitext(os.path.basename(path_to_xls))[0]
+				out_dir = f"output/{os.path.splitext(os.path.basename(path_to_xls))[0]}"
 
 			if not os.path.exists(out_dir):
-			    os.makedirs(out_dir)
-			    print(f"Directory '{out_dir}' created successfully!")
+				os.makedirs(out_dir)
+				print(f"Directory '{out_dir}' created successfully!")
 
 			# Create an ExcelFile object
 			xls = xlrd.open_workbook(path_to_xls, on_demand=True)
@@ -49,16 +49,17 @@ class Converter:
 					print(f"Done in {round((end - start).total_seconds() * 1000)}ms")
 
 		else:
-		    print(f"The path {path_to_xls} is not a file.")
+			print(f"The path {path_to_xls} is not a file.")
 
 
 if __name__ == '__main__':
-	#python convert.py '/Users/allongo/Downloads/Forecast_AIDA/forecast.gestione_msd.xls' "DATA_ORA_RIF >= '2024-12-17' and DATA_ORA_RIF < '2024-12-18'" 'gestione_msd_20241217'
+	# python convert.py '/Users/allongo/Downloads/Forecast_AIDA/forecast.gestione_msd.xls'
+	# 	"DATA_ORA_RIF>='2024-12-17' and DATA_ORA_RIF<'2024-12-18' and ID_SESSIONE=18" 'gestione_msd_20241217'
 
-	#print(sys.argv)
+	# print(sys.argv)
 
-	path_to_xls=sys.argv[1]
-	query = sys.argv[2] if len(sys.argv) > 2 else None
-	out_dir = sys.argv[3] if len(sys.argv) > 3 else None
+	path_to_xls_arg = sys.argv[1]
+	query_arg = sys.argv[2] if len(sys.argv) > 2 else None
+	out_dir_arg = sys.argv[3] if len(sys.argv) > 3 else None
 
-	Converter.convert(path_to_xls, query, out_dir)
+	Converter.convert(path_to_xls_arg, query_arg, out_dir_arg)
