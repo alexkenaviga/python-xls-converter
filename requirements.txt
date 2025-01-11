@@ -1,4 +1,3 @@
-#asyncio
-#openpyxl
+asyncio
 pandas
 xlrd
